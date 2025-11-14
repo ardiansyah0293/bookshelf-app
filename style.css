@@ -1,0 +1,239 @@
+/* Style Global */
+:root {
+  --primary-color: #3f51b5; /* Indigo */
+  --secondary-color: #ff9800; /* Orange */
+  --background-color: linear-gradient(90deg,rgba(24, 131, 173, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+header {
+  background-color: var--primary-color;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+
+section {
+  background-color: var(--card-background);
+  padding: 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+section:nth-child(1), section:nth-child(2) {
+  grid-column: 1 / 2; /* Form dan Search berada di kolom pertama */
+}
+
+section:nth-child(3), section:nth-child(4) {
+  grid-column: 2 / 3; /* Rak berada di kolom kedua */
+}
+
+/* Typography */
+h1 {
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 5px;
+}
+
+/* Form Styling */
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #303f9f;
+}
+
+#bookFormSubmit span {
+  font-weight: bold;
+}
+
+/* Search Form Specific Styling */
+#searchBook input[type="text"] {
+  margin-right: 10px;
+  width: auto;
+  display: inline-block;
+}
+
+#searchBook {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Book Item Styling */
+#incompleteBookList, #completeBookList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+[data-testid="bookItem"] {
+  background-color: var(--card-background);
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+[data-testid="bookItemTitle"] {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+[data-testid="bookItemAuthor"],
+[data-testid="bookItemYear"] {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+[data-testid="bookItem"] div {
+  margin-top: 10px;
+}
+
+[data-testid="bookItem"] button {
+  margin-right: 8px;
+  padding: 8px 12px;
+  font-size: 0.85em;
+}
+
+[data-testid="bookItemIsCompleteButton"] {
+  background-color: var(--secondary-color);
+}
+
+[data-testid="bookItemIsCompleteButton"]:hover {
+  background-color: #fb8c00;
+}
+
+[data-testid="bookItemDeleteButton"] {
+  background-color: #f44336; /* Red */
+}
+
+[data-testid="bookItemDeleteButton"]:hover {
+  background-color: #d32f2f;
+}
+
+[data-testid="bookItemEditButton"] {
+  background-color: #00bcd4; /* Cyan */
+}
+
+[data-testid="bookItemEditButton"]:hover {
+  background-color: #0097a7;
+}
+
+/* Responsiveness */
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  section:nth-child(1), section:nth-child(2), section:nth-child(3), section:nth-child(4) {
+    grid-column: 1 / 2;
+  }
+}
+
+/* Modal Styling for Edit Book */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: var(--card-background);
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  width: 80%;
+  max-width: 500px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#editBookForm button {
+    margin-top: 15px;
+    width: 100%;
+}
